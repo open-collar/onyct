@@ -1,0 +1,87 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"> 
+
+	<!-- Requires: OutputPath - the path to the SVG file that will be compiled. -->
+	<!-- Requires: SourcePath - the path to the directory in which the output will be written. -->
+	<!-- Requires: OutputRootName - the root of the name each output file will be given. --> 
+	
+	<PropertyGroup> 
+		<!-- https://inkscape.org/release/ -->
+		<InkscapePath>C:\Program Files\Inkscape\inkscape.exe</InkscapePath>
+        <InkscapePath Condition="!Exists($(InkscapePath))">C:\Program Files (x86)\Inkscape\inkscape.exe</InkscapePath>
+		
+		<!-- https://imagemagick.org/script/download.php#windows -->
+		<ImageMagickPath>C:\Program Files\ImageMagick-7.0.8-Q16\magick.exe</ImageMagickPath>
+        <ImageMagickPath Condition="!Exists($(ImageMagickPath))">C:\Program Files\ImageMagick-7.0.8-Q16\magick.exe</ImageMagickPath>        
+	</PropertyGroup> 
+
+	<ItemGroup>  
+		<Compile Include="$(SourcePath)" />  
+	</ItemGroup>  
+
+	<Target Name="Build"  Inputs="@(Compile)" Outputs="$(OutputPath)$(OutputRootName)-16x16x32.png;$(OutputPath)$(OutputRootName)-24x24x32.png;$(OutputPath)$(OutputRootName)-32x32x32.png;$(OutputPath)$(OutputRootName)-48x48x32.png;$(OutputPath)$(OutputRootName)-64x64x32.png;$(OutputPath)$(OutputRootName)-96x96x32.png;$(OutputPath)$(OutputRootName)-128x128x32.png;$(OutputPath)$(OutputRootName)-256x256x32.png;$(OutputPath)$(OutputRootName)-512x512x32.png;$(OutputPath)$(OutputRootName)-1024x1024x32.png">  
+
+		<!-- ;$(OutputPath)$(OutputRootName)-systray-16x16.ico;$(OutputPath)$(OutputRootName)-systray-18x18.ico;$(OutputPath)$(OutputRootName)-systray-20x20.ico;$(OutputPath)$(OutputRootName)-systray-22x22.ico;;$(OutputPath)$(OutputRootName)-systray-24x24.ico;$(OutputPath)$(OutputRootName)-systray.ico -->
+
+		<MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />  
+		<Exec Command="&quot;$(InkscapePath)&quot; --file &quot;$(SourcePath)&quot; --export-png &quot;$(OutputPath)$(OutputRootName)-16x16x32.png&quot; --export-width 16"/> 
+		<Exec Command="&quot;$(InkscapePath)&quot; --file &quot;$(SourcePath)&quot; --export-png &quot;$(OutputPath)$(OutputRootName)-24x24x32.png&quot; --export-width 24"/> 
+		<Exec Command="&quot;$(InkscapePath)&quot; --file &quot;$(SourcePath)&quot; --export-png &quot;$(OutputPath)$(OutputRootName)-32x32x32.png&quot; --export-width 32"/> 
+		<Exec Command="&quot;$(InkscapePath)&quot; --file &quot;$(SourcePath)&quot; --export-png &quot;$(OutputPath)$(OutputRootName)-48x48x32.png&quot; --export-width 48"/> 
+		<Exec Command="&quot;$(InkscapePath)&quot; --file &quot;$(SourcePath)&quot; --export-png &quot;$(OutputPath)$(OutputRootName)-64x64x32.png&quot; --export-width 64"/> 
+		<Exec Command="&quot;$(InkscapePath)&quot; --file &quot;$(SourcePath)&quot; --export-png &quot;$(OutputPath)$(OutputRootName)-96x96x32.png&quot; --export-width 96"/> 
+		<Exec Command="&quot;$(InkscapePath)&quot; --file &quot;$(SourcePath)&quot; --export-png &quot;$(OutputPath)$(OutputRootName)-128x128x32.png&quot; --export-width 128"/> 
+		<Exec Command="&quot;$(InkscapePath)&quot; --file &quot;$(SourcePath)&quot; --export-png &quot;$(OutputPath)$(OutputRootName)-256x256x32.png&quot; --export-width 256"/> 
+		<Exec Command="&quot;$(InkscapePath)&quot; --file &quot;$(SourcePath)&quot; --export-png &quot;$(OutputPath)$(OutputRootName)-512x512x32.png&quot; --export-width 512"/> 
+		<Exec Command="&quot;$(InkscapePath)&quot; --file &quot;$(SourcePath)&quot; --export-png &quot;$(OutputPath)$(OutputRootName)-1024x1024x32.png&quot; --export-width 1024"/>
+
+		<Exec Command="&quot;$(InkscapePath)&quot; --file &quot;$(SourcePath)&quot; --export-png &quot;$(OutputPath)$(OutputRootName)-systray-16x16x32.png&quot; --export-width 16" Condition="'$(CreateSystrayIcons)'=='True'" /> 
+		<Exec Command="&quot;$(InkscapePath)&quot; --file &quot;$(SourcePath)&quot; --export-png &quot;$(OutputPath)$(OutputRootName)-systray-18x18x32.png&quot; --export-width 18" Condition="'$(CreateSystrayIcons)'=='True'" />
+		<Exec Command="&quot;$(InkscapePath)&quot; --file &quot;$(SourcePath)&quot; --export-png &quot;$(OutputPath)$(OutputRootName)-systray-20x20x32.png&quot; --export-width 20" Condition="'$(CreateSystrayIcons)'=='True'" />
+		<Exec Command="&quot;$(InkscapePath)&quot; --file &quot;$(SourcePath)&quot; --export-png &quot;$(OutputPath)$(OutputRootName)-systray-22x22x32.png&quot; --export-width 22" Condition="'$(CreateSystrayIcons)'=='True'" />
+		<Exec Command="&quot;$(InkscapePath)&quot; --file &quot;$(SourcePath)&quot; --export-png &quot;$(OutputPath)$(OutputRootName)-systray-24x24x32.png&quot; --export-width 24" Condition="'$(CreateSystrayIcons)'=='True'" />
+		
+		<Exec Command="&quot;$(ImageMagickPath)&quot; convert &quot;$(OutputPath)$(OutputRootName)-systray-16x16x32.png&quot; &quot;$(OutputPath)$(OutputRootName)-systray-16x16.ico&quot;" Condition="'$(CreateSystrayIcons)'=='True'" />
+		<Exec Command="&quot;$(ImageMagickPath)&quot; convert &quot;$(OutputPath)$(OutputRootName)-systray-18x18x32.png&quot; &quot;$(OutputPath)$(OutputRootName)-systray-18x18.ico&quot;" Condition="'$(CreateSystrayIcons)'=='True'" />
+		<Exec Command="&quot;$(ImageMagickPath)&quot; convert &quot;$(OutputPath)$(OutputRootName)-systray-20x20x32.png&quot; &quot;$(OutputPath)$(OutputRootName)-systray-20x20.ico&quot;" Condition="'$(CreateSystrayIcons)'=='True'" />
+		<Exec Command="&quot;$(ImageMagickPath)&quot; convert &quot;$(OutputPath)$(OutputRootName)-systray-22x22x32.png&quot; &quot;$(OutputPath)$(OutputRootName)-systray-22x22.ico&quot;" Condition="'$(CreateSystrayIcons)'=='True'" />
+		<Exec Command="&quot;$(ImageMagickPath)&quot; convert &quot;$(OutputPath)$(OutputRootName)-systray-24x24x32.png&quot; &quot;$(OutputPath)$(OutputRootName)-systray-24x24.ico&quot;" Condition="'$(CreateSystrayIcons)'=='True'" />
+		<Exec Command="&quot;$(ImageMagickPath)&quot; convert &quot;$(OutputPath)$(OutputRootName)-systray-16x16x32.png&quot; &quot;$(OutputPath)$(OutputRootName)-systray-18x18x32.png&quot; &quot;$(OutputPath)$(OutputRootName)-systray-20x20x32.png&quot; &quot;$(OutputPath)$(OutputRootName)-systray-22x22x32.png&quot; &quot;$(OutputPath)$(OutputRootName)-systray-24x24x32.png&quot; &quot;$(OutputPath)$(OutputRootName)-systray.ico&quot;" Condition="'$(CreateSystrayIcons)'=='True'" />
+
+		<Exec Command="&quot;$(ImageMagickPath)&quot; convert &quot;$(OutputPath)$(OutputRootName)-16x16x32.png&quot; &quot;$(OutputPath)$(OutputRootName)-32x32x32.png&quot; &quot;$(OutputPath)$(OutputRootName)-48x48x32.png&quot; &quot;$(OutputPath)$(OutputRootName)-64x64x32.png&quot; &quot;$(OutputPath)$(OutputRootName)-256x256x32.png&quot; &quot;$(OutputPath)$(OutputRootName)-16x16x32.png&quot; &quot;$(OutputPath)$(OutputRootName).ico&quot;" Condition="'$(CreateIcon)'=='True'" />
+
+		<Exec Command="&quot;$(ImageMagickPath)&quot; convert &quot;$(OutputPath)$(OutputRootName)-systray-16x16x32.png&quot; &quot;$(OutputPath)favicon.ico&quot;" Condition="'$(CreateFavicon)'=='True'" />
+	</Target>  
+
+	<Target Name="Clean" >  
+		<Delete Files="$(OutputPath)$(OutputRootName)-16x16x32.png" />  
+		<Delete Files="$(OutputPath)$(OutputRootName)-24x24x32.png" />
+		<Delete Files="$(OutputPath)$(OutputRootName)-32x32x32.png" />  
+		<Delete Files="$(OutputPath)$(OutputRootName)-48x48x32.png" />  
+		<Delete Files="$(OutputPath)$(OutputRootName)-64x64x32.png" />  
+		<Delete Files="$(OutputPath)$(OutputRootName)-96x96x32.png" />  
+		<Delete Files="$(OutputPath)$(OutputRootName)-128x128x32.png" />  
+		<Delete Files="$(OutputPath)$(OutputRootName)-256x256x32.png" />  
+		<Delete Files="$(OutputPath)$(OutputRootName)-512x512x32.png" />  
+		<Delete Files="$(OutputPath)$(OutputRootName)-1024x1024x32.png" />  
+		
+		<Delete Files="$(OutputPath)$(OutputRootName))-systray-16x16x32.png" Condition="'$(CreateSystrayIcons)'=='True'" /> 
+		<Delete Files="$(OutputPath)$(OutputRootName))-systray-18x18x32.png" Condition="'$(CreateSystrayIcons)'=='True'" /> 
+		<Delete Files="$(OutputPath)$(OutputRootName))-systray-20x20x32.png" Condition="'$(CreateSystrayIcons)'=='True'" /> 
+		<Delete Files="$(OutputPath)$(OutputRootName))-systray-16x16x32.png" Condition="'$(CreateSystrayIcons)'=='True'" />  
+		
+		<Delete Files="$(OutputPath)$(OutputRootName))-systray-16x16.ico" Condition="'$(CreateSystrayIcons)'=='True'" /> 
+		<Delete Files="$(OutputPath)$(OutputRootName))-systray-18x18.ico" Condition="'$(CreateSystrayIcons)'=='True'" /> 
+		<Delete Files="$(OutputPath)$(OutputRootName))-systray-20x20.ico" Condition="'$(CreateSystrayIcons)'=='True'" /> 
+		<Delete Files="$(OutputPath)$(OutputRootName))-systray-22x22.ico" Condition="'$(CreateSystrayIcons)'=='True'" /> 
+		<Delete Files="$(OutputPath)$(OutputRootName))-systray-24x24.ico" Condition="'$(CreateSystrayIcons)'=='True'" /> 
+		<Delete Files="$(OutputPath)$(OutputRootName))-systray.ico" Condition="'$(CreateSystrayIcons)'=='True'" /> 
+
+		<Delete Files="$(OutputPath)$(OutputRootName)).ico" Condition="'$(CreateIcon)'=='True'" /> 
+		
+		<Delete Files="$(OutputPath)favicon.ico" Condition="'$(CreateFavicon)'=='True'" /> 
+
+	</Target>  
+
+	<Target Name="Rebuild" DependsOnTargets="Clean;Build" />  
+
+</Project>  

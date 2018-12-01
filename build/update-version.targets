@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <UsingTask TaskName="UpdateVersionInfo" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
+
+        <ParameterGroup>
+            <TCReleaseBuild ParameterType="System.String" Required="false" />
+        </ParameterGroup>
+        
+        <Task>
+            <Using Namespace="System" />
+            <Using Namespace="System.IO" />
+            <Using Namespace="Microsoft.Build.Utilities" />
+            <Using Namespace="Microsoft.Build.Framework" /> 
+            <Code Type="Fragment" Language="cs">
+<![CDATA[                
+            var path = Path.Combine(Path.GetDirectoryName(this.BuildEngine3.ProjectFileOfTaskNode), "Properties", "VersionInfo.cs");
+
+            if(string.IsNullOrWhiteSpace(TCReleaseBuild) || string.Equals(TCReleaseBuild, "1.0.0-desktop", StringComparison.OrdinalIgnoreCase))
+            {
+                var now = System.DateTime.UtcNow;
+                var version = @"1.0." + now.ToString(@"yy") + now.DayOfYear.ToString(@"00#") + @"." + ((now.Hour * 60) + now.Minute + 10000).ToString();
+                // Not arguments supplied - we must be running the desktop.
+                File.WriteAllText(path, @"using System.Reflection;
+[assembly: AssemblyVersion(""" + version + @""")]
+[assembly: AssemblyFileVersion(""" + version + @""")]
+[assembly: AssemblyInformationalVersion(""" + version + @"+" + System.Environment.UserName.ToUpperInvariant() + @"+" + System.Environment.MachineName.ToUpperInvariant() + @""")]");
+            }
+            else
+            {
+                try
+                {
+                    // E.g.: 3.2.0+15058+18079+164
+                    // <major>.<minor>.<patch>+<changeid>+<yyddd>+<counter>
+                
+                    var majorParts = TCReleaseBuild.Split(new [] {'+'});
+                    var minorParts = majorParts[0].Split(new [] {'.'});
+                    var fragment = minorParts[0] + "." + minorParts[1] + "." + minorParts[2] + "." + majorParts[1]; // <major>.<minor>.<patch>.<changeid>
+            
+                    File.WriteAllText(path, @"using System.Reflection;
+[assembly: AssemblyVersion(""" + fragment + @""")]
+[assembly: AssemblyFileVersion(""" + fragment + @""")]
+[assembly: AssemblyInformationalVersion(""" + TCReleaseBuild + @""")]");
+                }
+                catch(Exception ex)
+                {
+                    throw new Exception("Build version not in the format expected (\"<major>.<minor>.<patch>+<changeid>+<yyddd>+<counter>\"); found: \"" + TCReleaseBuild + "\".  See inner exception for details.", ex);
+                }
+            }
+            
+            Log.LogMessage("TCReleaseBuild: " + TCReleaseBuild, MessageImportance.High);
+]]>
+            </Code>
+        </Task>
+    </UsingTask>
+    
+    <PropertyGroup>
+        <tcreleasebuild Condition="'$(tcreleasebuild)' == ''">1.0.0-desktop</tcreleasebuild>
+    </PropertyGroup>
+    
+    <!-- Target that will automatically update /Properties/VersionInfo.cs during a TeamCity build. -->
+    <Target Name="UpdateVersionInfoFile" BeforeTargets="BeforeBuild">
+        <UpdateVersionInfo TCReleaseBuild="$(tcreleasebuild)"/>
+    </Target>
+    
+</Project>

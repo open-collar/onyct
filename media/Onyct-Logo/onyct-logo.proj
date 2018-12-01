@@ -1,0 +1,20 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"> 
+
+	<Import Project="..\resources.targets"/>  
+
+	<PropertyGroup> 
+		<OutputPath>bin\</OutputPath>
+	</PropertyGroup>
+	
+	<PropertyGroup>  
+		<SourcePath>onyct-logo.svg</SourcePath>
+		<OutputRootName>onyct-logo</OutputRootName>
+	</PropertyGroup>  
+
+	<PropertyGroup> 
+		<CreateIcon>True</CreateIcon>
+		<CreateFavicon>True</CreateFavicon>
+		<CreateSystrayIcons>True</CreateSystrayIcons>
+	</PropertyGroup>
+	
+</Project>  

@@ -1,0 +1,863 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OpenCollar.Onyct</name>
+    </assembly>
+    <members>
+        <member name="T:OpenCollar.Onyct.AlreadyInitializedException">
+            <summary>An exception that occurs when an attempt is made to initialize a service that has already been initialized.</summary>
+        </member>
+        <member name="M:OpenCollar.Onyct.AlreadyInitializedException.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:OpenCollar.Onyct.AlreadyInitializedException" /> class.</summary>
+        </member>
+        <member name="M:OpenCollar.Onyct.AlreadyInitializedException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenCollar.Onyct.AlreadyInitializedException" /> class with a specified error
+            message.
+            </summary>
+            <param name="message">The message that describes the error. </param>
+        </member>
+        <member name="M:OpenCollar.Onyct.AlreadyInitializedException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenCollar.Onyct.AlreadyInitializedException" /> class with a specified error
+            message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception. </param>
+            <param name="innerException">
+            The exception that is the cause of the current exception, or a <see langword="null" /> if
+            no inner exception is specified.
+            </param>
+        </member>
+        <member name="M:OpenCollar.Onyct.AlreadyInitializedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Initializes a new instance of the <see cref="T:OpenCollar.Onyct.AlreadyInitializedException" /> class with serialized data.</summary>
+            <param name="info">
+            The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object
+            data about the exception being thrown.
+            </param>
+            <param name="context">
+            The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual
+            information about the source or destination.
+            </param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="info" /> parameter is <see langword="null" />. </exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">
+            The class name is <see langword="null"/> or
+            <see cref="P:System.Exception.HResult" /> is zero (0).
+            </exception>
+        </member>
+        <member name="T:OpenCollar.Onyct.ArgsUsage">
+            <summary>Defines the ways in which an event args factory should be used.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.ArgsUsage.Unknown">
+            <summary>Usage is undefined (this will cause an error if used).</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.ArgsUsage.Reuse">
+            <summary>The factory will be called once and the same instance of the event args will be used for all delegates.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.ArgsUsage.UniqueInstance">
+            <summary>The factory will be called separately for each delegate.</summary>
+        </member>
+        <member name="T:OpenCollar.Onyct.BadImplementationException">
+            <summary>
+            An exception that occurs when a derived class does not implement an <c>abstract</c> or <c>virtual</c> method
+            correctly.
+            </summary>
+        </member>
+        <member name="M:OpenCollar.Onyct.BadImplementationException.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:OpenCollar.Onyct.BadImplementationException" /> class.</summary>
+        </member>
+        <member name="M:OpenCollar.Onyct.BadImplementationException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenCollar.Onyct.BadImplementationException" /> class with a specified error
+            message.
+            </summary>
+            <param name="message">The message that describes the error. </param>
+        </member>
+        <member name="M:OpenCollar.Onyct.BadImplementationException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenCollar.Onyct.BadImplementationException" /> class with a specified error
+            message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception. </param>
+            <param name="innerException">
+            The exception that is the cause of the current exception, or a <see langword="null" /> if
+            no inner exception is specified.
+            </param>
+        </member>
+        <member name="M:OpenCollar.Onyct.BadImplementationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Initializes a new instance of the <see cref="T:OpenCollar.Onyct.BadImplementationException" /> class with serialized data.</summary>
+            <param name="info">
+            The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object
+            data about the exception being thrown.
+            </param>
+            <param name="context">
+            The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual
+            information about the source or destination.
+            </param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="info" /> parameter is <see langword="null" />. </exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">
+            The class name is <see langword="null"/> or
+            <see cref="P:System.Exception.HResult" /> is zero (0).
+            </exception>
+        </member>
+        <member name="T:OpenCollar.Onyct.Comparable`1">
+            <summary>A base class for objects that support equality and comparison.</summary>
+            <typeparam name="T">The type of the derived class.</typeparam>
+            <seealso cref="T:System.IEquatable`1" />
+            <seealso cref="T:System.IComparable" />
+            <seealso cref="T:System.IComparable`1" />
+        </member>
+        <member name="M:OpenCollar.Onyct.Comparable`1.CompareTo(System.Object)">
+            <summary>
+            Compares the current instance with another object of the same type and returns an integer that indicates
+            whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+            </summary>
+            <returns>
+            A value that indicates the relative order of the objects being compared. The return value has these meanings:
+            Value Meaning Less than zero This instance precedes <paramref name="obj" /> in the sort order. Zero This instance
+            occurs in the same position in the sort order as <paramref name="obj" />. Greater than zero This instance follows
+            <paramref name="obj" /> in the sort order.
+            </returns>
+            <param name="obj">An object to compare with this instance. </param>
+            <exception cref="T:System.ArgumentException"><paramref name="obj" /> is not the same type as this instance. </exception>
+        </member>
+        <member name="M:OpenCollar.Onyct.Comparable`1.CompareTo(`0)">
+            <summary>Compares the current object with another object of the same type.</summary>
+            <returns>
+            A value that indicates the relative order of the objects being compared. The return value has the following
+            meanings: Value Meaning Less than zero This object is less than the <paramref name="other" /> parameter.Zero This
+            object is equal to <paramref name="other" />. Greater than zero This object is greater than <paramref name="other" />.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:OpenCollar.Onyct.Comparable`1.Equals(`0)">
+            <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+            <returns>
+            <see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise,
+            <see langword="false" />.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:OpenCollar.Onyct.Comparable`1.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to the current
+            <see cref="T:System.Object" />.
+            </summary>
+            <returns>
+            <see langword="true" /> if the specified <see cref="T:System.Object" /> is equal to the current
+            <see cref="T:System.Object" />; otherwise, <see langword="false" />.
+            </returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:OpenCollar.Onyct.Comparable`1.Compare(`0,`0)">
+            <summary>
+            Compares two instances of this class and returns an integer that indicates whether the current instance
+            precedes, follows, or occurs in the same position in the sort order as the other object.
+            </summary>
+            <param name="first">
+            The first instance to compare.  Will never be <see langword="null" /> or a reference to
+            <paramref name="second" />.
+            </param>
+            <param name="second">
+            The second instance to compare.  Will never be <see langword="null" /> or a reference to
+            <paramref name="first" />.
+            </param>
+            <returns>
+            A value that indicates the relative order of the objects being compared. The return value has these meanings:
+            <list type="bullet">
+                <item>
+                    <term>Less Than Zero</term>
+                    <description><paramref name="first" /> precedes <paramref name="second" /> in the sort order.</description>
+                </item> <item>
+                    <term>Zero</term>
+                    <description>
+                    <paramref name="first" /> occurs in the same position in the sort order as
+                    <paramref name="second" />.
+                    </description>
+                </item> <item>
+                    <term>More Than Zero</term>
+                    <description><paramref name="first" /> follows <paramref name="second" /> in the sort order.</description>
+                </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.Comparable`1.OnCompare(`0,`0)">
+            <summary>
+            Compares two instances of this class and returns an integer that indicates whether the current instance
+            precedes, follows, or occurs in the same position in the sort order as the other object.
+            </summary>
+            <param name="first">
+            The first instance to compare.  Will never be <see langword="null" /> or a reference to
+            <paramref name="second" />.
+            </param>
+            <param name="second">
+            The second instance to compare.  Will never be <see langword="null" /> or a reference to
+            <paramref name="first" />.
+            </param>
+            <returns>
+            A value that indicates the relative order of the objects being compared. The return value has these meanings:
+            <list type="bullet">
+                <item>
+                    <term>Less Than Zero</term>
+                    <description><paramref name="first" /> precedes <paramref name="second" /> in the sort order.</description>
+                </item> <item>
+                    <term>Zero</term>
+                    <description>
+                    <paramref name="first" /> occurs in the same position in the sort order as
+                    <paramref name="second" />.
+                    </description>
+                </item> <item>
+                    <term>More Than Zero</term>
+                    <description><paramref name="first" /> follows <paramref name="second" /> in the sort order.</description>
+                </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.Comparable`1.op_Equality(OpenCollar.Onyct.Comparable{`0},OpenCollar.Onyct.Comparable{`0})">
+            <summary>Implements the equality operator.</summary>
+            <param name="left">The left operand.</param>
+            <param name="right">The right operand.</param>
+            <returns>The result of the operation.</returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.Comparable`1.op_Inequality(OpenCollar.Onyct.Comparable{`0},OpenCollar.Onyct.Comparable{`0})">
+            <summary>Implements the inequality operator.</summary>
+            <param name="left">The left operand.</param>
+            <param name="right">The right operand.</param>
+            <returns>The result of the operation.</returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.Comparable`1.op_GreaterThan(OpenCollar.Onyct.Comparable{`0},OpenCollar.Onyct.Comparable{`0})">
+            <summary>Implements the greater-than operator.</summary>
+            <param name="left">The left operand.</param>
+            <param name="right">The right operand.</param>
+            <returns>The result of the operation.</returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.Comparable`1.op_LessThan(OpenCollar.Onyct.Comparable{`0},OpenCollar.Onyct.Comparable{`0})">
+            <summary>Implements the less-than operator.</summary>
+            <param name="left">The left operand.</param>
+            <param name="right">The right operand.</param>
+            <returns>The result of the operation.</returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.Comparable`1.op_GreaterThanOrEqual(OpenCollar.Onyct.Comparable{`0},OpenCollar.Onyct.Comparable{`0})">
+            <summary>Implements the greater-than-or-equals operator.</summary>
+            <param name="left">The left operand.</param>
+            <param name="right">The right operand.</param>
+            <returns>The result of the operation.</returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.Comparable`1.op_LessThanOrEqual(OpenCollar.Onyct.Comparable{`0},OpenCollar.Onyct.Comparable{`0})">
+            <summary>Implements the less-than-or-equals operator.</summary>
+            <param name="left">The left operand.</param>
+            <param name="right">The right operand.</param>
+            <returns>The result of the operation.</returns>
+        </member>
+        <member name="T:OpenCollar.Onyct.ComparableDisposable`1">
+            <summary>A base class for disposable objects that support equality and comparison.</summary>
+            <typeparam name="T">The type of the derived class.</typeparam>
+            <seealso cref="T:System.IEquatable`1" />
+            <seealso cref="T:System.IComparable" />
+            <seealso cref="T:System.IComparable`1" />
+            <seealso cref="T:System.IDisposable" />
+        </member>
+        <member name="M:OpenCollar.Onyct.ComparableDisposable`1.CompareTo(System.Object)">
+            <summary>
+            Compares the current instance with another object of the same type and returns an integer that indicates
+            whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+            </summary>
+            <returns>
+            A value that indicates the relative order of the objects being compared. The return value has these meanings:
+            Value Meaning Less than zero This instance precedes <paramref name="obj" /> in the sort order. Zero This instance
+            occurs in the same position in the sort order as <paramref name="obj" />. Greater than zero This instance follows
+            <paramref name="obj" /> in the sort order.
+            </returns>
+            <param name="obj">An object to compare with this instance. </param>
+            <exception cref="T:System.ArgumentException"><paramref name="obj" /> is not the same type as this instance. </exception>
+        </member>
+        <member name="M:OpenCollar.Onyct.ComparableDisposable`1.CompareTo(`0)">
+            <summary>Compares the current object with another object of the same type.</summary>
+            <returns>
+            A value that indicates the relative order of the objects being compared. The return value has the following
+            meanings: Value Meaning Less than zero This object is less than the <paramref name="other" /> parameter.Zero This
+            object is equal to <paramref name="other" />. Greater than zero This object is greater than <paramref name="other" />.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:OpenCollar.Onyct.ComparableDisposable`1.Equals(`0)">
+            <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+            <returns>
+            <see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise,
+            <see langword="false" />.
+            </returns>
+            <param name="other">An object to compare with this object.</param>
+        </member>
+        <member name="M:OpenCollar.Onyct.ComparableDisposable`1.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to the current
+            <see cref="T:System.Object" />.
+            </summary>
+            <returns>
+            <see langword="true" /> if the specified <see cref="T:System.Object" /> is equal to the current
+            <see cref="T:System.Object" />; otherwise, <see langword="false" />.
+            </returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:OpenCollar.Onyct.ComparableDisposable`1.Compare(`0,`0)">
+            <summary>
+            Compares two instances of this class and returns an integer that indicates whether the current instance
+            precedes, follows, or occurs in the same position in the sort order as the other object.
+            </summary>
+            <param name="first">
+            The first instance to compare.  Will never be <see langword="null" /> or a reference to
+            <paramref name="second" />.
+            </param>
+            <param name="second">
+            The second instance to compare.  Will never be <see langword="null" /> or a reference to
+            <paramref name="first" />.
+            </param>
+            <returns>
+            A value that indicates the relative order of the objects being compared. The return value has these meanings:
+            <list type="bullet">
+                <item>
+                    <term>Less Than Zero</term>
+                    <description><paramref name="first" /> precedes <paramref name="second" /> in the sort order.</description>
+                </item> <item>
+                    <term>Zero</term>
+                    <description>
+                    <paramref name="first" /> occurs in the same position in the sort order as
+                    <paramref name="second" />.
+                    </description>
+                </item> <item>
+                    <term>More Than Zero</term>
+                    <description><paramref name="first" /> follows <paramref name="second" /> in the sort order.</description>
+                </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.ComparableDisposable`1.OnCompare(`0,`0)">
+            <summary>
+            Compares two instances of this class and returns an integer that indicates whether the current instance
+            precedes, follows, or occurs in the same position in the sort order as the other object.
+            </summary>
+            <param name="first">
+            The first instance to compare.  Will never be <see langword="null" /> or a reference to
+            <paramref name="second" />.
+            </param>
+            <param name="second">
+            The second instance to compare.  Will never be <see langword="null" /> or a reference to
+            <paramref name="first" />.
+            </param>
+            <returns>
+            A value that indicates the relative order of the objects being compared. The return value has these meanings:
+            <list type="bullet">
+                <item>
+                    <term>Less Than Zero</term>
+                    <description><paramref name="first" /> precedes <paramref name="second" /> in the sort order.</description>
+                </item> <item>
+                    <term>Zero</term>
+                    <description>
+                    <paramref name="first" /> occurs in the same position in the sort order as
+                    <paramref name="second" />.
+                    </description>
+                </item> <item>
+                    <term>More Than Zero</term>
+                    <description><paramref name="first" /> follows <paramref name="second" /> in the sort order.</description>
+                </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.ComparableDisposable`1.op_Equality(OpenCollar.Onyct.ComparableDisposable{`0},OpenCollar.Onyct.ComparableDisposable{`0})">
+            <summary>Implements the equality operator.</summary>
+            <param name="left">The left operand.</param>
+            <param name="right">The right operand.</param>
+            <returns>The result of the operation.</returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.ComparableDisposable`1.op_Inequality(OpenCollar.Onyct.ComparableDisposable{`0},OpenCollar.Onyct.ComparableDisposable{`0})">
+            <summary>Implements the inequality operator.</summary>
+            <param name="left">The left operand.</param>
+            <param name="right">The right operand.</param>
+            <returns>The result of the operation.</returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.ComparableDisposable`1.op_GreaterThan(OpenCollar.Onyct.ComparableDisposable{`0},OpenCollar.Onyct.ComparableDisposable{`0})">
+            <summary>Implements the greater-than operator.</summary>
+            <param name="left">The left operand.</param>
+            <param name="right">The right operand.</param>
+            <returns>The result of the operation.</returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.ComparableDisposable`1.op_LessThan(OpenCollar.Onyct.ComparableDisposable{`0},OpenCollar.Onyct.ComparableDisposable{`0})">
+            <summary>Implements the less-than operator.</summary>
+            <param name="left">The left operand.</param>
+            <param name="right">The right operand.</param>
+            <returns>The result of the operation.</returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.ComparableDisposable`1.op_GreaterThanOrEqual(OpenCollar.Onyct.ComparableDisposable{`0},OpenCollar.Onyct.ComparableDisposable{`0})">
+            <summary>Implements the greater-than-or-equals operator.</summary>
+            <param name="left">The left operand.</param>
+            <param name="right">The right operand.</param>
+            <returns>The result of the operation.</returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.ComparableDisposable`1.op_LessThanOrEqual(OpenCollar.Onyct.ComparableDisposable{`0},OpenCollar.Onyct.ComparableDisposable{`0})">
+            <summary>Implements the less-than-or-equals operator.</summary>
+            <param name="left">The left operand.</param>
+            <param name="right">The right operand.</param>
+            <returns>The result of the operation.</returns>
+        </member>
+        <member name="T:OpenCollar.Onyct.EventArgsFactory`1">
+            <summary>A delegate used to generate event args for a safe call to a delegate.</summary>
+            <typeparam name="TEventArgs">The type of the event args that will be returned.</typeparam>
+            <returns>A instance of the event args to pass to the delegate when invoked.</returns>
+        </member>
+        <member name="T:OpenCollar.Onyct.DelegateExtensions">
+            <summary>Extensions to the delegate class.</summary>
+        </member>
+        <member name="M:OpenCollar.Onyct.DelegateExtensions.GetDescription(System.Delegate)">
+            <summary>Gets the delegate description.</summary>
+            <param name="delegate">The delegate to describe.</param>
+            <returns>A description of the type and method specified by the delegate.</returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.DelegateExtensions.SafeInvoke(System.Delegate,System.String,System.Object)">
+            <summary>
+            Invokes the delegate given (if not <see langword="null" />) with protection against exceptions thrown by the
+            invoked methods.
+            </summary>
+            <param name="handler">The delegate to call.</param>
+            <param name="eventName">The name of the event being raised.</param>
+            <param name="sender">The object to pass as the sender.</param>
+            <returns><see langword="true" /> if at least one delegate was successfully invoked, <see langword="false" /> otherwise.</returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.DelegateExtensions.SafeInvoke``1(System.Delegate,System.String,System.Object,OpenCollar.Onyct.ArgsUsage,OpenCollar.Onyct.EventArgsFactory{``0})">
+            <summary>
+            Invokes the delegate given (if not <see langword="null" />) with protection against exceptions thrown by the
+            invoked methods.
+            </summary>
+            <typeparam name="T">The type of the event args to pass.</typeparam>
+            <param name="handler">The delegate to call.</param>
+            <param name="eventName">The name of the event being raised.</param>
+            <param name="sender">The object to pass as the sender.</param>
+            <param name="usage">The way in which to use the factory to generate args.</param>
+            <param name="eventArgFactory">A factory for generating event args.</param>
+            <returns><see langword="true" /> if at least one delegate was successfully invoked, <see langword="false" /> otherwise.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Thrown if an invalid value passed in the <paramref name="usage" />
+            argument.
+            </exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="eventName" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ArgumentException">
+            <paramref name="eventName" /> is zero-length or contains only white space
+            characters.
+            </exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="eventArgFactory" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="T:OpenCollar.Onyct.Disposable">
+            <summary>A base class for disposable objects.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.Disposable.Disposed">
+            <summary>The value of the <see cref="F:OpenCollar.Onyct.Disposable._isDisposed" /> flag after the class has started to be disposed of.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.Disposable.NotDisposed">
+            <summary>The value of the <see cref="F:OpenCollar.Onyct.Disposable._isDisposed" /> flag before the class has started to be disposed of.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.Disposable._isDisposed">
+            <summary>A flag used to track whether this instance has been disposed of.</summary>
+        </member>
+        <member name="P:OpenCollar.Onyct.Disposable.IsDisposed">
+            <summary>Gets a value indicating whether this instance has been disposed of.</summary>
+            <value><see langword="true" /> if this instances has been disposed of; otherwise, <see langword="false" />.</value>
+        </member>
+        <member name="M:OpenCollar.Onyct.Disposable.Dispose">
+            <summary>Release allocated resources.</summary>
+        </member>
+        <member name="M:OpenCollar.Onyct.Disposable.Dispose(System.Boolean)">
+            <summary>Releases unmanaged and - optionally - managed resources.</summary>
+            <param name="disposing">
+            <see langword="true" /> to release both managed and unmanaged resources;
+            <see langword="false" /> to release only unmanaged resources.
+            </param>
+        </member>
+        <member name="M:OpenCollar.Onyct.Disposable.CheckNotDisposed">
+            <summary>Checks that this object has not been disposed of and throws an exception if it has.</summary>
+            <exception cref="T:System.ObjectDisposedException">Object cannot be accessed after it has been disposed of.</exception>
+        </member>
+        <member name="T:OpenCollar.Onyct.ElementIs">
+            <summary>The basic content validation for element in enumerables.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.ElementIs.Unknown">
+            <summary>Validation type has not been specified.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.ElementIs.NotNull">
+            <summary>The element may not be <see langword="null" />.</summary>
+        </member>
+        <member name="T:OpenCollar.Onyct.EnumIs">
+            <summary>The basic content validation for objects.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.EnumIs.Unknown">
+            <summary>ValidationExtensions type has not been specified.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.EnumIs.Member">
+            <summary>The value is a valid member of the enum.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.EnumIs.NonZeroMember">
+            <summary>The value is a valid member of the enum and is not zero (usually reserved from 'Unknown').</summary>
+        </member>
+        <member name="T:OpenCollar.Onyct.ErrorMessages">
+            <summary>Functions that generate standard messages for exceptions.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.ErrorMessages.NullReference">
+            <summary>The string used to indicate a <see langword="null" /> reference in error messages.</summary>
+        </member>
+        <member name="M:OpenCollar.Onyct.ErrorMessages.ArgumentNull(System.String)">
+            <summary>Gets error message to use when a parameter is <see langword="null" />.</summary>
+            <param name="parameterName">The name of the invalid parameter.</param>
+            <returns>A formatted string ready to use in the error message.</returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.ErrorMessages.ArgumentZeroLengthString(System.String)">
+            <summary>Gets error message to use when a string parameter is zero-length.</summary>
+            <param name="parameterName">The name of the invalid parameter.</param>
+            <returns>A formatted string ready to use in the error message.</returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.ErrorMessages.ArgumentWhiteSpaceString(System.String)">
+            <summary>Gets error message to use when a string parameter contains only white space characters.</summary>
+            <param name="parameterName">The name of the invalid parameter.</param>
+            <returns>A formatted string ready to use in the error message.</returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.ErrorMessages.ObjectAccessedAfterDispose(System.Type)">
+            <summary>
+            Gets error message to use when a method or property of a <see cref="T:System.IDisposable">Disposable</see> object is
+            called after it has been disposed of.
+            </summary>
+            <param name="disposableObjectType">The type of the object that has been disposed of.</param>
+            <returns>A formatted string ready to use in the error message.</returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.ErrorMessages.ImplementorReturnedInvalid(System.Type,System.Type,System.Reflection.MemberInfo,System.String)">
+            <summary>
+            Gets error message to use when the implementor of an abstract or virtual method in a base class returns a
+            value that is not permitted.
+            </summary>
+            <param name="baseClassType">The type of the base class.</param>
+            <param name="derivedClassType">The type of the derived class.</param>
+            <param name="member">The member (on the derived class) that returned an invalid value.</param>
+            <param name="invalidValueDescription">
+            A description of the invalid value (must fit into "The derived class returned XXX
+            when the method was called.
+            </param>
+            <returns>A formatted string ready to use in the error message.</returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.ErrorMessages.ImplementorReturnedNull(System.Type,System.Type,System.Reflection.MemberInfo)">
+            <summary>
+            Gets error message to use when the implementor of an abstract or virtual method in a base class returns null
+            when it is not permitted.
+            </summary>
+            <param name="baseClassType">The type of the base class.</param>
+            <param name="derivedClassType">The type of the derived class.</param>
+            <param name="member">The member (on the derived class) that returned <see langword="null" />.</param>
+            <returns>A formatted string ready to use in the error message.</returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.ErrorMessages.GetRepresentation(System.Type)">
+            <summary>Gets a string that can be used to represent the type given in error messages.</summary>
+            <param name="type">The type to represent.</param>
+            <returns>A string that can be used to represent the type given in error messages.</returns>
+        </member>
+        <member name="M:OpenCollar.Onyct.ErrorMessages.GetRepresentation(System.Reflection.MemberInfo)">
+            <summary>Gets a string that can be used to represent the member given in error messages.</summary>
+            <param name="member">The member to represent.</param>
+            <returns>A string that can be used to represent the member given in error messages.</returns>
+        </member>
+        <member name="T:OpenCollar.Onyct.ExceptionManager">
+            <summary>A hub through which all unhandled exceptions are routed.</summary>
+        </member>
+        <member name="E:OpenCollar.Onyct.ExceptionManager.UnhandledException">
+            <summary>Called when an unhandled exception is reported.</summary>
+        </member>
+        <member name="M:OpenCollar.Onyct.ExceptionManager.OnUnhandledException(System.Exception,System.String)">
+            <summary>Called when unhandled exception occurs anywhere in an application or its libraries.</summary>
+            <param name="unhandledException">The exception that was thrown.  Can be <see langword="null" />.</param>
+            <param name="activity">
+            The activity that was taking place at the time of the exception (should be a sentence fragment
+            with no initial capital or terminal punctuation,  e.g. "loading tasks").  Can be <see langword="null" />, zero-length
+            or contain only whitespace characters.
+            </param>
+        </member>
+        <member name="T:OpenCollar.Onyct.NotYetInitializedException">
+            <summary>An exception that occurs when an attempt is made to access a service that has not yet been initialized.</summary>
+        </member>
+        <member name="M:OpenCollar.Onyct.NotYetInitializedException.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:OpenCollar.Onyct.NotYetInitializedException" /> class.</summary>
+        </member>
+        <member name="M:OpenCollar.Onyct.NotYetInitializedException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenCollar.Onyct.NotYetInitializedException" /> class with a specified error
+            message.
+            </summary>
+            <param name="message">The message that describes the error. </param>
+        </member>
+        <member name="M:OpenCollar.Onyct.NotYetInitializedException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenCollar.Onyct.NotYetInitializedException" /> class with a specified error
+            message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception. </param>
+            <param name="innerException">
+            The exception that is the cause of the current exception, or a <see langword="null" /> if
+            no inner exception is specified.
+            </param>
+        </member>
+        <member name="M:OpenCollar.Onyct.NotYetInitializedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Initializes a new instance of the <see cref="T:OpenCollar.Onyct.NotYetInitializedException" /> class with serialized data.</summary>
+            <param name="info">
+            The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object
+            data about the exception being thrown.
+            </param>
+            <param name="context">
+            The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual
+            information about the source or destination.
+            </param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="info" /> parameter is <see langword="null" />. </exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">
+            The class name is <see langword="null"/> or
+            <see cref="P:System.Exception.HResult" /> is zero (0).
+            </exception>
+        </member>
+        <member name="T:OpenCollar.Onyct.NumberIs">
+            <summary>The basic content validation for objects.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.NumberIs.Unknown">
+            <summary>ValidationExtensions type has not been specified.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.NumberIs.IsAtLeast">
+            <summary>The number is greater than or equal to the number specified.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.NumberIs.IsAtMost">
+            <summary>The value is less than or equal to the number specified.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.NumberIs.IsBetween">
+            <summary>
+            The value greater than or equal to the first value specified, and less than or equal to the second number
+            specified.
+            </summary>
+        </member>
+        <member name="T:OpenCollar.Onyct.ObjectIs">
+            <summary>The basic content validation for objects.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.ObjectIs.Unknown">
+            <summary>Validation type has not been specified.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.ObjectIs.NotNull">
+            <summary>The object may not be <see langword="null" />.</summary>
+        </member>
+        <member name="T:OpenCollar.Onyct.StringIs">
+            <summary>The basic content validation for strings.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.StringIs.Unknown">
+            <summary>Validation type has not been specified.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.StringIs.NotNull">
+            <summary>The string may not be <see langword="null" />.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.StringIs.NotEmpty">
+            <summary>The string may not be zero-length.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.StringIs.NotWhiteSpace">
+            <summary>The string may not contain only white space characters.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.StringIs.NotNullEmptyOrWhiteSpace">
+            <summary>The string may not be <see langword="null" />, zero-length or contain only white space characters.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.StringIs.NotNullOrEmpty">
+            <summary>The string may not be <see langword="null" /> or zero-length.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.StringIs.NotNullOrWhiteSpace">
+            <summary>The string may not be <see langword="null" /> or contain only white space characters.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.StringIs.NotEmptyOrWhiteSpace">
+            <summary>The string may not be zero-length or contain only white space characters.</summary>
+        </member>
+        <member name="T:OpenCollar.Onyct.UnhandledExceptionEventArgs">
+            <summary>The arguments supplied to handlers of the <see cref="E:OpenCollar.Onyct.ExceptionManager.UnhandledException" /> event.</summary>
+            <seealso cref="T:System.EventArgs" />
+        </member>
+        <member name="F:OpenCollar.Onyct.UnhandledExceptionEventArgs._activity">
+            <summary>
+            A short description of the activity that was taking place at the time of the exception (should be a sentence
+            fragment with no initial capital or terminal punctuation,  e.g. "loading tasks").  Can be <see langword="null" />,
+            zero-length or contain only whitespace characters.
+            </summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.UnhandledExceptionEventArgs._exception">
+            <summary>The unhandled exception that has been detected.  Can be <see langword="null" />.</summary>
+        </member>
+        <member name="M:OpenCollar.Onyct.UnhandledExceptionEventArgs.#ctor(System.Exception,System.String)">
+            <summary>Initializes a new instance of the <see cref="T:OpenCollar.Onyct.UnhandledExceptionEventArgs" /> class.</summary>
+            <param name="exception">The unhandled exception that has been detected.  Can be <see langword="null" />.</param>
+            <param name="activity">
+            A short description of the activity taking place when the unhandled exception occurred.  Can be
+            <see langword="null" />, zero-length or contain only whitespace characters.
+            </param>
+        </member>
+        <member name="P:OpenCollar.Onyct.UnhandledExceptionEventArgs.Exception">
+            <summary>Gets the unhandled exception that has been detected.  Can be <see langword="null" />.</summary>
+            <value>The unhandled exception that has been detected.  Can be <see langword="null" />.</value>
+        </member>
+        <member name="P:OpenCollar.Onyct.UnhandledExceptionEventArgs.Activity">
+            <summary>
+            Gets a short description of the activity that was taking place at the time of the exception (should be a
+            sentence fragment with no initial capital or terminal punctuation,  e.g. "loading tasks").  Can be
+            <see langword="null" />, zero-length or contain only whitespace characters.
+            </summary>
+            <value>
+            A short description of the activity that was taking place at the time of the exception (should be a sentence
+            fragment with no initial capital or terminal punctuation,  e.g. "loading tasks").  Can be <see langword="null" />,
+            zero-length or contain only whitespace characters.
+            </value>
+        </member>
+        <member name="T:OpenCollar.Onyct.ValidatedNotNullAttribute">
+            <summary>Class used to decorate the arguments of a function that are validated as not null by a validation method.</summary>
+        </member>
+        <member name="T:OpenCollar.Onyct.ValidationExtensions">
+            <summary>Methods used to validate arguments passed to public functions.</summary>
+        </member>
+        <member name="M:OpenCollar.Onyct.ValidationExtensions.Validate``1(``0,System.String,OpenCollar.Onyct.EnumIs)">
+            <summary>Asserts that <paramref name="value" /> given is a valid instance of the enumerable type</summary>
+            <typeparam name="T">The type of the enum.</typeparam>
+            <param name="value">The value to check.</param>
+            <param name="argumentName">The name of the caller's argument passed in <paramref name="value" />.</param>
+            <param name="validationType">The type of validation to perform.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            The value given was not a valid member of the
+            <typeparamref name="T" /> type.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">The value given was not an enumerable type.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">The value given is set to 'Unknown'.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            The value of <paramref name="validationType" /> is not a valid
+            member of the <see cref="T:OpenCollar.Onyct.EnumIs" /> type.
+            </exception>
+        </member>
+        <member name="M:OpenCollar.Onyct.ValidationExtensions.NotNull``1(``0)">
+            <summary>Checks that the <paramref name="value" /> given is not <see langword="null" /> and returns it.</summary>
+            <typeparam name="T">The type of the object to check</typeparam>
+            <param name="value">The value to check and return.</param>
+            <returns>The value given, guaranteed to not be <see langword="null" />.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:OpenCollar.Onyct.ValidationExtensions.Validate``1(System.Collections.Generic.IEnumerable{``0},System.String,OpenCollar.Onyct.ObjectIs,OpenCollar.Onyct.ElementIs)">
+            <summary>
+            Asserts that the enumerable <paramref name="values" /> and the items it contains meet the criteria specified
+            in <paramref name="argumentValidationType" /> and throws an exception if it does not.
+            </summary>
+            <param name="values">The value to check.</param>
+            <param name="argumentName">The name of the caller's argument passed in <paramref name="values" />.</param>
+            <param name="argumentValidationType">The type of validation to perform on the argument.</param>
+            <param name="elementValidationType">The type of validation to perform on the elements in the enumerable argument.</param>
+            <exception cref="T:System.ArgumentNullException">The value given was <see langword="null" />.</exception>
+            <exception cref="T:System.ArgumentException">Item in the argument given is <see langword="null" />.</exception>
+        </member>
+        <member name="M:OpenCollar.Onyct.ValidationExtensions.Validate``1(``0,System.String,OpenCollar.Onyct.ObjectIs)">
+            <summary>
+            Asserts that <paramref name="value" /> meets the criteria specified in
+            <paramref name="argumentValidationType" /> and throws an exception if it does not.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="argumentName">The name of the caller's argument passed in <paramref name="value" />.</param>
+            <param name="argumentValidationType">The type of validation to perform.</param>
+            <exception cref="T:System.ArgumentNullException">The value given was <see langword="null" />.</exception>
+        </member>
+        <member name="M:OpenCollar.Onyct.ValidationExtensions.Validate(System.String,System.String,OpenCollar.Onyct.StringIs)">
+            <summary>
+            Asserts that <paramref name="value" /> meets the criteria specified in <paramref name="validationType" /> and
+            throws an exception if it does not.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="validationType">The type of validation to perform.</param>
+            <param name="argumentName">The name of the caller's argument passed in <paramref name="value" />.</param>
+            <exception cref="T:System.ArgumentNullException">The value given was <see langword="null" />.</exception>
+            <exception cref="T:System.ArgumentException">The value given was zero-length.</exception>
+            <exception cref="T:System.ArgumentException">The value given contains only white space characters.</exception>
+        </member>
+        <member name="M:OpenCollar.Onyct.ValidationExtensions.Validate(System.Int32,System.String,OpenCollar.Onyct.NumberIs,System.Int32)">
+            <summary>
+            Asserts that <paramref name="value" /> is greater than, or less than, the value in <paramref name="limit" />,
+            depending upon the setting in <paramref name="validationType" />.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="argumentName">The name of the caller's argument passed in <paramref name="value" />.</param>
+            <param name="validationType">The type of validation to perform.</param>
+            <param name="limit">
+            The limit (maximum or minimum value depending upon the value in <paramref name="validationType" />
+            ).
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">'value' is outside the permitted range of values.</exception>
+        </member>
+        <member name="M:OpenCollar.Onyct.ValidationExtensions.Validate(System.Int32,System.String,OpenCollar.Onyct.NumberIs,System.Int32,System.Int32)">
+            <summary>
+            Asserts that <paramref name="value" /> is in the inclusive range of values specified by
+            <paramref name="lowerBoundInclusive" /> and <paramref name="upperBoundInclusive" /> and throws an exception if it is
+            not.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="argumentName">The name of the caller's argument passed in <paramref name="value" />.</param>
+            <param name="validationType">The type of validation to perform.</param>
+            <param name="lowerBoundInclusive">The inclusive lower bound.</param>
+            <param name="upperBoundInclusive">
+            The inclusive upper bound (must not be less than
+            <paramref name="lowerBoundInclusive" />)..
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">'value' is outside the permitted range of values.</exception>
+        </member>
+        <member name="M:OpenCollar.Onyct.ValidationExtensions.Validate(System.Int64,System.String,OpenCollar.Onyct.NumberIs,System.Int64)">
+            <summary>
+            Asserts that <paramref name="value" /> is greater than, or less than, the value in <paramref name="limit" />,
+            depending upon the setting in <paramref name="validationType" />.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="argumentName">The name of the caller's argument passed in <paramref name="value" />.</param>
+            <param name="validationType">The type of validation to perform.</param>
+            <param name="limit">
+            The limit (maximum or minimum value depending upon the value in <paramref name="validationType" />
+            ).
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">'value' is outside the permitted range of values.</exception>
+        </member>
+        <member name="M:OpenCollar.Onyct.ValidationExtensions.Validate(System.Int64,System.String,OpenCollar.Onyct.NumberIs,System.Int64,System.Int64)">
+            <summary>
+            Asserts that <paramref name="value" /> is in the inclusive range of values specified by
+            <paramref name="lowerBoundInclusive" /> and <paramref name="upperBoundInclusive" /> and throws an exception if it is
+            not.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="argumentName">The name of the caller's argument passed in <paramref name="value" />.</param>
+            <param name="validationType">The type of validation to perform.</param>
+            <param name="lowerBoundInclusive">The inclusive lower bound.</param>
+            <param name="upperBoundInclusive">
+            The inclusive upper bound (must not be less than
+            <paramref name="lowerBoundInclusive" />)..
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">'value' is outside the permitted range of values.</exception>
+        </member>
+        <member name="M:OpenCollar.Onyct.ValidationExtensions.Validate(System.Double,System.String,OpenCollar.Onyct.NumberIs,System.Double)">
+            <summary>
+            Asserts that <paramref name="value" /> is greater than, or less than, the value in <paramref name="limit" />,
+            depending upon the setting in <paramref name="validationType" />.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="argumentName">The name of the caller's argument passed in <paramref name="value" />.</param>
+            <param name="validationType">The type of validation to perform.</param>
+            <param name="limit">
+            The limit (maximum or minimum value depending upon the value in <paramref name="validationType" />
+            ).
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">'value' is outside the permitted range of values.</exception>
+        </member>
+        <member name="M:OpenCollar.Onyct.ValidationExtensions.Validate(System.Double,System.String,OpenCollar.Onyct.NumberIs,System.Double,System.Double)">
+            <summary>
+            Asserts that <paramref name="value" /> is in the inclusive range of values specified by
+            <paramref name="lowerBoundInclusive" /> and <paramref name="upperBoundInclusive" /> and throws an exception if it is
+            not.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="argumentName">The name of the caller's argument passed in <paramref name="value" />.</param>
+            <param name="validationType">The type of validation to perform.</param>
+            <param name="lowerBoundInclusive">The inclusive lower bound.</param>
+            <param name="upperBoundInclusive">
+            The inclusive upper bound (must not be less than
+            <paramref name="lowerBoundInclusive" />)..
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">'value' is outside the permitted range of values.</exception>
+        </member>
+    </members>
+</doc>

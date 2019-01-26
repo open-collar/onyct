@@ -21,7 +21,7 @@ namespace OpenCollar.Onyct
         /// </param>
         public static void OnUnhandledException([CanBeNull] Exception unhandledException, [CanBeNull] string activity)
         {
-            UnhandledException.SafeInvoke("UnhandledException", null, ArgsUsage.Reuse, () => new UnhandledExceptionEventArgs(unhandledException, activity));
+            UnhandledException.SafeInvoke(nameof(UnhandledException), null, ArgsUsage.Reuse, () => new UnhandledExceptionEventArgs(unhandledException, activity));
         }
     }
 }

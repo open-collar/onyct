@@ -10,24 +10,20 @@ namespace OpenCollar.Onyct
     /// <summary>A base class for disposable objects.</summary>
     public abstract class Disposable : IDisposable
     {
-        /// <summary>The value of the <see cref="_isDisposed" /> flag after the class has started to be disposed of.</summary>
-        private const int Disposed = default(int) + 1;
-
         /// <summary>The value of the <see cref="_isDisposed" /> flag before the class has started to be disposed of.</summary>
         private const int NotDisposed = default(int);
+
+        /// <summary>The value of the <see cref="_isDisposed" /> flag after the class has started to be disposed of.</summary>
+        private const int Disposed = NotDisposed + 1;
 
         /// <summary>A flag used to track whether this instance has been disposed of.</summary>
         private int _isDisposed;/* = NotDisposed; // This will be automatically instantiated correctly, no need for us to do anything else. */
 
         /// <summary>Gets a value indicating whether this instance has been disposed of.</summary>
         /// <value><see langword="true" /> if this instances has been disposed of; otherwise, <see langword="false" />.</value>
-        public bool IsDisposed
-        {
-            get { return _isDisposed == Disposed; }
-        }
+        public bool IsDisposed => _isDisposed == Disposed;
 
         /// <summary>Release allocated resources.</summary>
-        [SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly", Justification = "It is implemented correctly.")]
         public void Dispose()
         {
             // Check to see if we are already disposing.

@@ -39,13 +39,12 @@ namespace OpenCollar.Onyct
 
                     if(!enumType.IsEnum)
                     {
-                        throw new ArgumentOutOfRangeException("value", value, "'value' is not a enum type.");
+                        throw new ArgumentOutOfRangeException(nameof(value), value, $@"'{nameof(value)}' is not an enum type.");
                     }
 
                     if(!Enum.IsDefined(enumType, value))
                     {
-                        throw new ArgumentOutOfRangeException(argumentName, value,
-                                                              string.Format(CultureInfo.InvariantCulture, "'{0}' is not a valid member of the [{1}] type.", argumentName, enumType.FullName));
+                        throw new ArgumentOutOfRangeException(argumentName, value, $@"'{argumentName}' is not a valid member of the [{enumType.FullName}] type.");
                     }
 
                     if(validationType == EnumIs.NonZeroMember)
@@ -60,7 +59,7 @@ namespace OpenCollar.Onyct
 
                             if(e.Equals(0))
                             {
-                                throw new ArgumentOutOfRangeException(argumentName, value, string.Format(CultureInfo.InvariantCulture, "'{0}' is set to 'Unknown'.", argumentName));
+                                throw new ArgumentOutOfRangeException(argumentName, value, $@"'{argumentName}' is set to 'Unknown'.");
                             }
                         }
                     }
@@ -68,7 +67,7 @@ namespace OpenCollar.Onyct
                     break;
 
                 default:
-                    throw new ArgumentOutOfRangeException("validationType", validationType, string.Format("'validationType' is not a valid member of the [{0}] type.", typeof(EnumIs).FullName));
+                    throw new ArgumentOutOfRangeException(nameof(validationType), validationType, $@"'{nameof(validationType)}' is not a valid member of the [{ErrorMessages.GetRepresentation(typeof(EnumIs))}] type.");
             }
         }
 
@@ -123,7 +122,7 @@ namespace OpenCollar.Onyct
             {
                 if(ReferenceEquals(results[n], null))
                 {
-                    throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, @"Item {0} in '{1}' is null.", n, argumentName), argumentName);
+                    throw new ArgumentException($@"Item {n} in '{argumentName}' is null.", argumentName);
                 }
             }
 
@@ -211,7 +210,7 @@ namespace OpenCollar.Onyct
                 case NumberIs.IsAtLeast:
                     if(value < limit)
                     {
-                        throw new ArgumentOutOfRangeException(argumentName, value, string.Format(CultureInfo.InvariantCulture, "'{0}' is less than the minimum value {1}.", argumentName, limit));
+                        throw new ArgumentOutOfRangeException(argumentName, value, $@"'{argumentName}' is less than the minimum value {limit}.");
                     }
 
                     break;
@@ -219,13 +218,13 @@ namespace OpenCollar.Onyct
                 case NumberIs.IsAtMost:
                     if(value > limit)
                     {
-                        throw new ArgumentOutOfRangeException(argumentName, value, string.Format(CultureInfo.InvariantCulture, "'{0}' is more than the maximum value {1}.", argumentName, limit));
+                        throw new ArgumentOutOfRangeException(argumentName, value, $@"'{argumentName}' is more than the maximum value {limit}.");
                     }
 
                     break;
 
                 default:
-                    throw new ArgumentOutOfRangeException("validationType", validationType, "'validationType' must be 'NumberIs.IsAtLeast' or 'NumberIs.IsAtMost'.");
+                    throw new ArgumentOutOfRangeException(nameof(validationType), validationType, $@"'{nameof(validationType)}' must be 'NumberIs.IsAtLeast' or 'NumberIs.IsAtMost'.");
             }
         }
 
@@ -250,15 +249,13 @@ namespace OpenCollar.Onyct
             if(((validationType == NumberIs.IsAtLeast) || (validationType == NumberIs.IsBetween)) && (value < lowerBoundInclusive))
             {
                 throw new ArgumentOutOfRangeException(argumentName, value,
-                                                      string.Format(CultureInfo.InvariantCulture, "'{0}' is less than the minimum value.  '{0}' must be in the range {1} to {2} (inclusive).",
-                                                                    argumentName, lowerBoundInclusive, upperBoundInclusive));
+                                                      $@"'{argumentName}' is less than the minimum value.  '{argumentName}' must be in the range {lowerBoundInclusive} to {upperBoundInclusive} (inclusive).");
             }
 
             if(((validationType == NumberIs.IsAtMost) || (validationType == NumberIs.IsBetween)) && (value > upperBoundInclusive))
             {
                 throw new ArgumentOutOfRangeException(argumentName, value,
-                                                      string.Format(CultureInfo.InvariantCulture, "'{0}' is greater than the maximum value.  '{0}' must be in the range {1} to {2} (inclusive).",
-                                                                    argumentName, lowerBoundInclusive, upperBoundInclusive));
+                                                      $@"'{argumentName}' is greater than the maximum value.  '{argumentName}' must be in the range {lowerBoundInclusive} to {upperBoundInclusive} (inclusive).");
             }
         }
 

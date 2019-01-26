@@ -447,11 +447,11 @@
         <member name="T:OpenCollar.Onyct.Disposable">
             <summary>A base class for disposable objects.</summary>
         </member>
-        <member name="F:OpenCollar.Onyct.Disposable.Disposed">
-            <summary>The value of the <see cref="F:OpenCollar.Onyct.Disposable._isDisposed" /> flag after the class has started to be disposed of.</summary>
-        </member>
         <member name="F:OpenCollar.Onyct.Disposable.NotDisposed">
             <summary>The value of the <see cref="F:OpenCollar.Onyct.Disposable._isDisposed" /> flag before the class has started to be disposed of.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.Disposable.Disposed">
+            <summary>The value of the <see cref="F:OpenCollar.Onyct.Disposable._isDisposed" /> flag after the class has started to be disposed of.</summary>
         </member>
         <member name="F:OpenCollar.Onyct.Disposable._isDisposed">
             <summary>A flag used to track whether this instance has been disposed of.</summary>
@@ -501,6 +501,12 @@
         <member name="F:OpenCollar.Onyct.ErrorMessages.NullReference">
             <summary>The string used to indicate a <see langword="null" /> reference in error messages.</summary>
         </member>
+        <member name="F:OpenCollar.Onyct.ErrorMessages.ZeroLength">
+            <summary>The string used to indicate a zero-length string in error messages.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.ErrorMessages.WhiteSpaceOnly">
+            <summary>The string used to indicate a white-space-only string in error messages.</summary>
+        </member>
         <member name="M:OpenCollar.Onyct.ErrorMessages.ArgumentNull(System.String)">
             <summary>Gets error message to use when a parameter is <see langword="null" />.</summary>
             <param name="parameterName">The name of the invalid parameter.</param>
@@ -518,30 +524,30 @@
         </member>
         <member name="M:OpenCollar.Onyct.ErrorMessages.ObjectAccessedAfterDispose(System.Type)">
             <summary>
-            Gets error message to use when a method or property of a <see cref="T:System.IDisposable">Disposable</see> object is
-            called after it has been disposed of.
+                Gets error message to use when a method or property of a <see cref="T:System.IDisposable">Disposable</see> object is
+                called after it has been disposed of.
             </summary>
             <param name="disposableObjectType">The type of the object that has been disposed of.</param>
             <returns>A formatted string ready to use in the error message.</returns>
         </member>
         <member name="M:OpenCollar.Onyct.ErrorMessages.ImplementorReturnedInvalid(System.Type,System.Type,System.Reflection.MemberInfo,System.String)">
             <summary>
-            Gets error message to use when the implementor of an abstract or virtual method in a base class returns a
-            value that is not permitted.
+                Gets error message to use when the implementor of an abstract or virtual method in a base class returns a
+                value that is not permitted.
             </summary>
             <param name="baseClassType">The type of the base class.</param>
             <param name="derivedClassType">The type of the derived class.</param>
             <param name="member">The member (on the derived class) that returned an invalid value.</param>
             <param name="invalidValueDescription">
-            A description of the invalid value (must fit into "The derived class returned XXX
-            when the method was called.
+                A description of the invalid value (must fit into "The derived class returned XXX
+                when the method was called.
             </param>
             <returns>A formatted string ready to use in the error message.</returns>
         </member>
         <member name="M:OpenCollar.Onyct.ErrorMessages.ImplementorReturnedNull(System.Type,System.Type,System.Reflection.MemberInfo)">
             <summary>
-            Gets error message to use when the implementor of an abstract or virtual method in a base class returns null
-            when it is not permitted.
+                Gets error message to use when the implementor of an abstract or virtual method in a base class returns null
+                when it is not permitted.
             </summary>
             <param name="baseClassType">The type of the base class.</param>
             <param name="derivedClassType">The type of the derived class.</param>
@@ -572,6 +578,37 @@
             with no initial capital or terminal punctuation,  e.g. "loading tasks").  Can be <see langword="null" />, zero-length
             or contain only whitespace characters.
             </param>
+        </member>
+        <member name="T:OpenCollar.Onyct.HandledEventArgs">
+            <summary>The base-class for event arguments that can control the behavior of the code that invokes each callback handler.</summary>
+            <remarks>Use the <see cref="P:OpenCollar.Onyct.HandledEventArgs.State"/> property to control how the event is raised to subsequent handlers.</remarks>
+            <seealso cref="T:System.EventArgs" />
+        </member>
+        <member name="P:OpenCollar.Onyct.HandledEventArgs.State">
+            <summary>
+                Gets or sets the current state of this event.
+            </summary>
+            <value>
+                The current state of this event.
+            </value>
+        </member>
+        <member name="T:OpenCollar.Onyct.HandledEventState">
+            <summary>The state of an event that can be handled whilst it is being raised.</summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.HandledEventState.Unhandled">
+            <summary>
+                The event has not been handled and will continue to be raised to consumers.
+            </summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.HandledEventState.HandledButContinueToNotify">
+            <summary>
+                The event has been handled but can continue to be raised to consumers.
+            </summary>
+        </member>
+        <member name="F:OpenCollar.Onyct.HandledEventState.HandledAndCeaseRaising">
+            <summary>
+                The event has been handled and no further consumers should be notified.
+            </summary>
         </member>
         <member name="T:OpenCollar.Onyct.NotYetInitializedException">
             <summary>An exception that occurs when an attempt is made to access a service that has not yet been initialized.</summary>
@@ -669,24 +706,16 @@
         </member>
         <member name="T:OpenCollar.Onyct.UnhandledExceptionEventArgs">
             <summary>The arguments supplied to handlers of the <see cref="E:OpenCollar.Onyct.ExceptionManager.UnhandledException" /> event.</summary>
+            <remarks>Use the <see cref="P:OpenCollar.Onyct.HandledEventArgs.State"/> property to control how the event is raised to subsequent handlers.</remarks>
+            <seealso cref="T:OpenCollar.Onyct.HandledEventArgs" />
             <seealso cref="T:System.EventArgs" />
-        </member>
-        <member name="F:OpenCollar.Onyct.UnhandledExceptionEventArgs._activity">
-            <summary>
-            A short description of the activity that was taking place at the time of the exception (should be a sentence
-            fragment with no initial capital or terminal punctuation,  e.g. "loading tasks").  Can be <see langword="null" />,
-            zero-length or contain only whitespace characters.
-            </summary>
-        </member>
-        <member name="F:OpenCollar.Onyct.UnhandledExceptionEventArgs._exception">
-            <summary>The unhandled exception that has been detected.  Can be <see langword="null" />.</summary>
         </member>
         <member name="M:OpenCollar.Onyct.UnhandledExceptionEventArgs.#ctor(System.Exception,System.String)">
             <summary>Initializes a new instance of the <see cref="T:OpenCollar.Onyct.UnhandledExceptionEventArgs" /> class.</summary>
             <param name="exception">The unhandled exception that has been detected.  Can be <see langword="null" />.</param>
             <param name="activity">
-            A short description of the activity taking place when the unhandled exception occurred.  Can be
-            <see langword="null" />, zero-length or contain only whitespace characters.
+                A short description of the activity taking place when the unhandled exception occurred.  Can be
+                <see langword="null" />, zero-length or contain only whitespace characters.
             </param>
         </member>
         <member name="P:OpenCollar.Onyct.UnhandledExceptionEventArgs.Exception">
@@ -695,14 +724,14 @@
         </member>
         <member name="P:OpenCollar.Onyct.UnhandledExceptionEventArgs.Activity">
             <summary>
-            Gets a short description of the activity that was taking place at the time of the exception (should be a
-            sentence fragment with no initial capital or terminal punctuation,  e.g. "loading tasks").  Can be
-            <see langword="null" />, zero-length or contain only whitespace characters.
+                Gets a short description of the activity that was taking place at the time of the exception (should be a
+                sentence fragment with no initial capital or terminal punctuation,  e.g. "loading tasks").  Can be
+                <see langword="null" />, zero-length or contain only whitespace characters.
             </summary>
             <value>
-            A short description of the activity that was taking place at the time of the exception (should be a sentence
-            fragment with no initial capital or terminal punctuation,  e.g. "loading tasks").  Can be <see langword="null" />,
-            zero-length or contain only whitespace characters.
+                A short description of the activity that was taking place at the time of the exception (should be a sentence
+                fragment with no initial capital or terminal punctuation,  e.g. "loading tasks").  Can be <see langword="null" />,
+                zero-length or contain only whitespace characters.
             </value>
         </member>
         <member name="T:OpenCollar.Onyct.ValidatedNotNullAttribute">

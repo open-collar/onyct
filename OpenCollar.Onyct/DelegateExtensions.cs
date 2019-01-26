@@ -3,7 +3,6 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Threading;
 using JetBrains.Annotations;
 
@@ -25,16 +24,16 @@ namespace OpenCollar.Onyct
         {
             if(ReferenceEquals(@delegate, null))
             {
-                return @"[Null]";
+                return @"[null]";
             }
 
             if(ReferenceEquals(@delegate.Method.DeclaringType, null))
             {
-                return string.Format(CultureInfo.InvariantCulture, @"[No Type].{0}", @delegate.Method);
+                return $@"[unknown].{@delegate.Method}";
             }
 
             // ReSharper disable once AssignNullToNotNullAttribute
-            return string.Format(CultureInfo.InvariantCulture, @"[{0}].{1}", @delegate.Method.DeclaringType.FullName, @delegate.Method);
+            return $@"[{@delegate.Method.DeclaringType.FullName}].{@delegate.Method}";
         }
 
         /// <summary>
@@ -45,7 +44,6 @@ namespace OpenCollar.Onyct
         /// <param name="eventName">The name of the event being raised.</param>
         /// <param name="sender">The object to pass as the sender.</param>
         /// <returns><see langword="true" /> if at least one delegate was successfully invoked, <see langword="false" /> otherwise.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "All exceptions must be caught, and their type cannot be anticipated.")]
         public static bool SafeInvoke([CanBeNull] this Delegate handler, [NotNull] string eventName, [CanBeNull] object sender)
         {
             return SafeInvoke(handler, eventName, sender, ArgsUsage.Reuse, () => EventArgs.Empty);
@@ -72,7 +70,6 @@ namespace OpenCollar.Onyct
         /// characters.
         /// </exception>
         /// <exception cref="System.ArgumentNullException"><paramref name="eventArgFactory" /> is <see langword="null" />.</exception>
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "All exceptions must be caught, and their type cannot be anticipated.")]
         public static bool SafeInvoke<T>([CanBeNull] this Delegate handler, [NotNull] string eventName, [CanBeNull] object sender, ArgsUsage usage, EventArgsFactory<T> eventArgFactory)
             where T : EventArgs
         {
@@ -102,29 +99,44 @@ namespace OpenCollar.Onyct
                     break;
 
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(usage), usage, string.Format(CultureInfo.InvariantCulture, @"'{0}' argument contains invalid value: {1}.", "usage", usage));
+                    throw new ArgumentOutOfRangeException(nameof(usage), usage, $@"'{nameof(usage)}' argument contains invalid value: {usage}.");
             }
 
             var raised = false;
+            var checkForHandled = typeof(HandledEventArgs).IsAssignableFrom(typeof(T));
 
-            foreach(var callback in delegates)
+            foreach (var callback in delegates)
             {
                 try
                 {
-                    if(generateArgs)
+                    if (generateArgs)
                     {
                         args = new[] {sender, eventArgFactory()};
                     }
 
-                    // ReSharper disable once PossibleNullReferenceException
                     callback.DynamicInvoke(args);
                     raised = true;
+
+                    if (checkForHandled && (((HandledEventArgs) args[1]).State == HandledEventState.HandledAndCeaseRaising))
+                    {
+                        break;
+                    }
                 }
-                catch(ThreadAbortException)
-                { }
+                catch (ThreadAbortException)
+                {
+                    // Ignore thread abort exceptions, but do stop processing any further.
+                    break;
+                }
                 catch(Exception ex)
                 {
-                    ExceptionManager.OnUnhandledException(ex, string.Format(CultureInfo.InvariantCulture, @"Error whilst '{0}' event was being handled by {1}.", eventName, GetDescription(callback)));
+                    if (typeof(UnhandledExceptionEventArgs).IsAssignableFrom(typeof(T)))
+                    {
+                        // If we already in the process of raising an exception just ignore anything further.
+                        continue;
+                    }
+
+                    // If an event handler has raised an exception report it, but carry on.
+                    ExceptionManager.OnUnhandledException(ex, $@"Error whilst '{eventName}' event was being handled by {GetDescription(callback)}.");
                 }
             }
 
